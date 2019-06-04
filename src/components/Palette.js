@@ -1,16 +1,36 @@
 import "./styles/Palette.css";
+import "rc-slider/assets/index.css";
 
 import React, { Component } from "react";
+import Slider from "rc-slider/lib/Slider";
+// import Range from 'rc-slider/lib/Range';
 
 import ColorBox from "./ColorBox";
 
 class Palette extends Component {
+  state = {
+    level: 500
+  };
+
+  changeLevel = level => {
+    console.log(level);
+    this.setState({ level });
+  };
   render() {
-    const colorBoxes = this.props.colors.map(color => (
-      <ColorBox background={color.color} name={color.name} />
+    const { colors } = this.props.palette;
+    const { level } = this.state;
+    const colorBoxes = colors[level].map(color => (
+      <ColorBox background={color.hex} name={color.name} />
     ));
     return (
       <div className="Palette">
+        <Slider
+          defaultValue={level}
+          min={100}
+          max={900}
+          step={100}
+          onChange={this.changeLevel}
+        />
         {/* Navbar goes here */}
         <div className="Palette-colors">{colorBoxes}</div>
         {/* footer */}
