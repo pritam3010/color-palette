@@ -22,8 +22,9 @@ function generatePalette(starterPallete) {
         hex: scale[i],
         rgb: chroma(scale[i]).css(),
         rgba: chroma(scale[i])
-          .alpha(1)
           .css()
+          .replace("rgb", "rgba")
+          .replace(")", ",1.0)")
       });
     }
   }
