@@ -1,13 +1,13 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
-import { flexbox } from "@material-ui/system";
 
 const styles = {
   root: {
     backgroundColor: "white",
+    border: "1px solid black",
     borderRadius: "5px",
-    padding: ".5rem",
-    position: "realtive",
+    padding: "0.5rem",
+    position: "relative",
     overflow: "hidden",
     "&:hover": {
       cursor: "pointer"
@@ -27,20 +27,23 @@ const styles = {
     position: "relative"
   },
   emoji: {
-    marignLeft: "0.5rem",
+    marginLeft: "0.5rem",
     fontSize: "1.5rem"
   }
 };
+
 function MiniPalette(props) {
   const { classes, paletteName, emoji } = props;
+  console.log(classes);
+
   return (
     <div className={classes.root}>
-      <div className={classes.color} />
+      <div className={classes.colors} />
       <h5 className={classes.title}>
-        {paletteName}
-        <span className={classes.emoji}>{emoji}</span>
+        {paletteName} <span className={classes.emoji}>{emoji}</span>
       </h5>
     </div>
   );
 }
+
 export default withStyles(styles)(MiniPalette);
